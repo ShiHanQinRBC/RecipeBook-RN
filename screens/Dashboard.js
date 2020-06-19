@@ -41,27 +41,9 @@ export const DashboardScreen = ({ navigation }) => {
       <Layout
         style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
       >
-        {/* <Text category="h1">Dashboard</Text> */}
-        <Button
-          style={styles.button}
-          appearance="outline"
-          status="primary"
-          onPress={navigateEdit}
-        >
-          Edit Recipe
-        </Button>
-        <Button
-          style={styles.button}
-          appearance="outline"
-          status="primary"
-          onPress={navigateView}
-        >
-          View Recipe
-        </Button>
-
-        <Card />
-        <Card />
-        <Card />
+        <Card navigation={navigation} />
+        <Card navigation={navigation} />
+        <Card navigation={navigation} />
       </Layout>
     </SafeAreaView>
   );
