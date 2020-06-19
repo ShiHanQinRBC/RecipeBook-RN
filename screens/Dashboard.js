@@ -18,14 +18,6 @@ export const DashboardScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const navigateEdit = () => {
-    navigation.navigate("EditForm");
-  };
-
-  const navigateView = () => {
-    navigation.navigate("ViewPost");
-  };
-
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import InstagramLogin from "react-native-instagram-login";
-import CookieManager from "@react-native-community/cookies";
+// import CookieManager from "@react-native-community/cookies";
 
 export default class InstaLogin extends Component {
   constructor(props) {
@@ -16,11 +16,11 @@ export default class InstaLogin extends Component {
     this.setState({ token: data.access_token });
   };
 
-  onClear() {
-    CookieManager.clearAll(true).then((res) => {
-      this.setState({ token: null });
-    });
-  }
+  //   onClear() {
+  //     CookieManager.clearAll(true).then((res) => {
+  //       this.setState({ token: null });
+  //     });
+  //   }
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -32,7 +32,7 @@ export default class InstaLogin extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.btn, { marginTop: 10, backgroundColor: "green" }]}
-          onPress={() => this.onClear()}
+          //onPress={() => this.onClear()}
         >
           <Text style={{ color: "white", textAlign: "center" }}>Logout</Text>
         </TouchableOpacity>
