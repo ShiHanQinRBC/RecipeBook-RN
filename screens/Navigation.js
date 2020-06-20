@@ -12,13 +12,12 @@ const { Navigator, Screen } = createStackNavigator();
 
 const HomeNavigator = () => (
   <Navigator headerMode="none">
-    {/* <Screen name="Dashboard" component={DashboardScreen} /> */}
     <Screen name="InstaLogin" component={InstaLogin} />
     <Screen name="Login" component={LoginScreen} />
     <Screen name="Dashboard" component={DashboardScreen} />
+    <Screen name="Card" component={Card} />
     <Screen name="EditForm" component={EditForm} />
     <Screen name="ViewPost" component={ViewPost} />
-    <Screen name="Card" component={Card} />
   </Navigator>
 );
 

@@ -11,9 +11,14 @@ export default class InstaLogin extends Component {
     };
   }
 
+  navigateDashboard = () => {
+    this.props.navigation.navigate("Dashboard");
+  };
+
   setIgToken = (data) => {
     console.log("data", data);
     this.setState({ token: data.access_token });
+    this.navigateDashboard();
   };
 
   //   onClear() {
@@ -21,6 +26,7 @@ export default class InstaLogin extends Component {
   //       this.setState({ token: null });
   //     });
   //   }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -48,7 +54,7 @@ export default class InstaLogin extends Component {
           ref={(ref) => (this.instagramLogin = ref)}
           appId="857366711422868"
           appSecret="a69514fe451d7acec9cd710fa9d102a3"
-          redirectUrl="https://eaba8f31d11f.ngrok.io/"
+          redirectUrl="https://d879c34a9d81.ngrok.io/"
           scopes={["user_profile", "user_media"]}
           onLoginSuccess={this.setIgToken}
           onLoginFailure={(data) => console.log(data)}

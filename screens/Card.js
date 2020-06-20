@@ -1,24 +1,8 @@
 import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import {
-  Button,
-  Divider,
-  Icon,
-  Layout,
-  Text,
-  TopNavigation,
-  TopNavigationAction,
-} from "@ui-kitten/components";
-
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
+import { Button, Divider, Layout, Text } from "@ui-kitten/components";
 
 export const Card = ({ navigation }) => {
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
   const navigateEdit = () => {
     navigation.navigate("EditForm");
   };
