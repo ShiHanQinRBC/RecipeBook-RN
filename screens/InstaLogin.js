@@ -16,11 +16,18 @@ export default class InstaLogin extends Component {
     this.props.navigation.navigate("Dashboard");
   };
 
-  setIgToken = (data) => {
-    console.log("data", data);
-    this.setState({ token: data.access_token });
-    const res = api.getToken(this.state.token);
-    console.log(res);
+  setToken = (token) => {
+    //console.log("data", data);
+    this.setState({ token: token });
+  };
+
+  successHandler = (data) => {
+    this.setToken(data.access_token);
+    const username = api.getUsername(this.state.token);
+    const media = api.getMedia(this.state.token);
+
+    console.log("instalogin " + username); //Why are these undefined?
+    console.log("instalogin " + media);
     this.navigateDashboard();
   };
 
@@ -57,9 +64,9 @@ export default class InstaLogin extends Component {
           ref={(ref) => (this.instagramLogin = ref)}
           appId="857366711422868"
           appSecret="a69514fe451d7acec9cd710fa9d102a3"
-          redirectUrl="https://f6d65732caf2.ngrok.io/"
+          redirectUrl="https://72463c727b13.ngrok.io/"
           scopes={["user_profile", "user_media"]}
-          onLoginSuccess={this.setIgToken}
+          onLoginSuccess={this.successHandler}
           onLoginFailure={(data) => console.log(data)}
         />
       </View>
