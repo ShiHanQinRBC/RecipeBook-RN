@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import InstagramLogin from "react-native-instagram-login";
+import api from "../api";
 // import CookieManager from "@react-native-community/cookies";
 
 export default class InstaLogin extends Component {
@@ -18,6 +19,8 @@ export default class InstaLogin extends Component {
   setIgToken = (data) => {
     console.log("data", data);
     this.setState({ token: data.access_token });
+    const res = api.getToken(this.state.token);
+    console.log(res);
     this.navigateDashboard();
   };
 
@@ -54,7 +57,7 @@ export default class InstaLogin extends Component {
           ref={(ref) => (this.instagramLogin = ref)}
           appId="857366711422868"
           appSecret="a69514fe451d7acec9cd710fa9d102a3"
-          redirectUrl="https://d879c34a9d81.ngrok.io/"
+          redirectUrl="https://f6d65732caf2.ngrok.io/"
           scopes={["user_profile", "user_media"]}
           onLoginSuccess={this.setIgToken}
           onLoginFailure={(data) => console.log(data)}

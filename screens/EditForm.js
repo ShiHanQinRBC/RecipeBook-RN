@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+// TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, Button, Keyboard  }
 // import { Icon } from "react-native-elements";
 import {
   Button,
   Divider,
   Icon,
+  Input,
   Layout,
   Text,
   TopNavigation,
@@ -34,6 +44,13 @@ export const EditForm = ({ navigation }) => {
   const updateEquipmentState = (state) => {
     setEquipment(state);
   };
+
+  const useInputState = (initialValue = "") => {
+    const [value, setValue] = React.useState(initialValue);
+    return { value, onChangeText: setValue };
+  };
+
+  const multilineInputState = useInputState();
 
   const navigateBack = () => {
     navigation.goBack();
@@ -94,6 +111,18 @@ export const EditForm = ({ navigation }) => {
             tagTextStyle={styles.tagText}
             keysForTag={", "}
           />
+          {/* <React.Fragment> */}
+
+          <Input
+            label="Fill in the Recipe Instructions"
+            labelStyle={{ color: "#fff" }}
+            multiline={true}
+            textStyle={{ minHeight: 64 }}
+            placeholder="Instructions"
+            {...multilineInputState}
+          />
+
+          {/* </React.Fragment> */}
         </View>
       </Layout>
     </SafeAreaView>
