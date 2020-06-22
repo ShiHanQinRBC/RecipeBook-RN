@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect, Component } from "react";
 import { Dimensions, Image, SafeAreaView, StyleSheet } from "react-native";
 import { Button, Divider, Layout, Text } from "@ui-kitten/components";
+import api from "../api";
 
-export const Card = ({ navigation }) => {
+export const Card = (props, { navigation }) => {
+  const [url, setUrl] = useState("");
+
   const navigateEdit = () => {
     navigation.navigate("EditForm");
   };
@@ -11,16 +14,30 @@ export const Card = ({ navigation }) => {
     navigation.navigate("ViewPost");
   };
 
+  const getPic = async () => {
+    console.log("get pic " + props.mediaId);
+
+    const url = await api.getPictureURL(props.mediaId, props.token);
+    console.log(url);
+    setUrl(url);
+    // return url;
+  };
+
+  useEffect(() => {
+    getPic();
+  });
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Divider />
       <Layout style={styles.container}>
         <Text style={{ fontStyle: "italic", fontSize: 24 }}>XX/XX/XXXX</Text>
+        {/* {getPic()} */}
         <Image
           style={styles.post}
           source={{
-            uri:
-              "https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
+            uri: url,
+            //"https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
           }}
         />
         <Button

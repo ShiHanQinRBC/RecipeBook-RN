@@ -9,12 +9,18 @@ export default class InstaLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: "",
+      mediaIds: [],
       token: "",
     };
   }
 
   navigateDashboard = () => {
-    this.props.navigation.navigate("Dashboard");
+    this.props.navigation.navigate("Dashboard", {
+      username: this.state.username,
+      mediaIds: this.state.mediaIds,
+      token: this.state.token,
+    });
   };
 
   setToken = (token) => {
@@ -23,12 +29,15 @@ export default class InstaLogin extends Component {
   };
 
   successHandler = async (data) => {
-    this.setToken(data.access_token);
-    const username = await api.getUsername(this.state.token);
-    const mediaIds = await api.getMedia(this.state.token);
+    //this.setToken(data.access_token);
+    const usernameRes = await api.getUsername(data.access_token);
+    const mediaIdsRes = await api.getMedia(data.access_token);
 
-    console.log(username);
-    console.log(mediaIds);
+    this.setState({
+      token: data.access_token,
+      username: usernameRes,
+      mediaIds: mediaIdsRes,
+    });
     this.navigateDashboard();
   };
 

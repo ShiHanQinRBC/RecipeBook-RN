@@ -17,4 +17,18 @@ export default {
     );
     return await res.data.data;
   },
+  getPictureURL: async (id, token) => {
+    const picURL =
+      "https://graph.instagram.com/" +
+      id +
+      "?fields=media_type,media_url,username,timestamp&access_token=" +
+      token;
+
+    try {
+      const res = await axios.get(picURL);
+      return await res.data.media_url;
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };

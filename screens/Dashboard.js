@@ -14,7 +14,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 
-export const DashboardScreen = ({ navigation }) => {
+export const DashboardScreen = ({ route, navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -22,6 +22,21 @@ export const DashboardScreen = ({ navigation }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
+
+  const displayCards = (ids, token) => {
+    console.log(ids);
+    const cards = [];
+    for (let i = 0; i < ids.length; i++) {
+      cards.push(
+        <Card
+          //key={route.params.mediaIds[i].id}
+          mediaId={ids[i].id}
+          token={token}
+        />
+      );
+    }
+    return cards;
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -35,6 +50,10 @@ export const DashboardScreen = ({ navigation }) => {
         <Layout
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
+          {/* {console.log(route.params.username)} */}
+          {console.log(route.params.mediaIds)}
+          {/* {console.log(route.params.token)} */}
+          {/* <Card navigation={navigation} />
           <Card navigation={navigation} />
           <Card navigation={navigation} />
           <Card navigation={navigation} />
@@ -45,8 +64,8 @@ export const DashboardScreen = ({ navigation }) => {
           <Card navigation={navigation} />
           <Card navigation={navigation} />
           <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
+          <Card navigation={navigation} /> */}
+          {displayCards(route.params.mediaIds, route.params.token)}
         </Layout>
       </ScrollView>
     </SafeAreaView>
