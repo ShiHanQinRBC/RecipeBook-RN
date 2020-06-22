@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import {
   Dimensions,
+  Image,
   SafeAreaView,
   StyleSheet,
   View,
   KeyboardAvoidingView,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-// TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, Button, Keyboard  }
-// import { Icon } from "react-native-elements";
 import {
   Button,
   Divider,
@@ -21,6 +19,7 @@ import {
   TopNavigationAction,
 } from "@ui-kitten/components";
 import TagInput from "react-native-tags-input";
+import { ScrollView } from "react-native-gesture-handler";
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 // const maiColor = "#3ca897";
@@ -62,69 +61,81 @@ export const EditForm = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation
-        title="Recipe Book"
-        alignment="center"
-        accessoryLeft={BackAction}
-      />
-      <Divider />
-      <Layout
-        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      <KeyboardAvoidingView
+        style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
+        behavior="padding"
+        enabled
+        keyboardVerticalOffset={100}
       >
-        <Text category="h1">Edit Form</Text>
-        <View style={styles.tagContainer}>
-          <TagInput
-            updateState={updateIngredientsState}
-            tags={ingredients}
-            placeholder="Ingredients..."
-            label="Press , and space to add an ingredient!"
-            labelStyle={{ color: "#fff" }}
-            containerStyle={{
-              width: Dimensions.get("window").width - 40,
-            }}
-            inputContainerStyle={[
-              styles.textInput,
-              { backgroundColor: tagsColor },
-            ]}
-            inputStyle={{ color: tagsText }}
-            autoCorrect={false}
-            tagStyle={styles.tag}
-            tagTextStyle={styles.tagText}
-            keysForTag={", "}
+        <ScrollView>
+          <TopNavigation
+            title="Edit Recipe"
+            alignment="center"
+            accessoryLeft={BackAction}
           />
-          <TagInput
-            updateState={updateEquipmentState}
-            tags={equipment}
-            placeholder="Equipment..."
-            label="Press , and space to add an equipment!"
-            labelStyle={{ color: "#fff" }}
-            containerStyle={{
-              width: Dimensions.get("window").width - 40,
-            }}
-            inputContainerStyle={[
-              styles.textInput,
-              { backgroundColor: tagsColor },
-            ]}
-            inputStyle={{ color: tagsText }}
-            autoCorrect={false}
-            tagStyle={styles.tag}
-            tagTextStyle={styles.tagText}
-            keysForTag={", "}
-          />
-          {/* <React.Fragment> */}
+          <Divider />
+          <Layout
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <Image
+              style={styles.post}
+              source={{
+                uri:
+                  "https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
+              }}
+            />
+            <View style={styles.tagContainer}>
+              <TagInput
+                updateState={updateIngredientsState}
+                tags={ingredients}
+                placeholder="Ingredients..."
+                label="Press , and space to add an ingredient!"
+                labelStyle={{ color: "#6b617a" }}
+                containerStyle={{
+                  width: Dimensions.get("window").width - 40,
+                }}
+                inputContainerStyle={[
+                  styles.textInput,
+                  { backgroundColor: tagsColor },
+                ]}
+                inputStyle={{ color: tagsText }}
+                autoCorrect={false}
+                tagStyle={styles.tag}
+                tagTextStyle={styles.tagText}
+                keysForTag={", "}
+              />
+              <TagInput
+                updateState={updateEquipmentState}
+                tags={equipment}
+                placeholder="Equipment..."
+                label="Press , and space to add an equipment!"
+                labelStyle={{ color: "#6b617a" }}
+                containerStyle={{
+                  width: Dimensions.get("window").width - 40,
+                }}
+                inputContainerStyle={[
+                  styles.textInput,
+                  { backgroundColor: tagsColor },
+                ]}
+                inputStyle={{ color: tagsText }}
+                autoCorrect={false}
+                tagStyle={styles.tag}
+                tagTextStyle={styles.tagText}
+                keysForTag={", "}
+              />
 
-          <Input
-            label="Fill in the Recipe Instructions"
-            labelStyle={{ color: "#fff" }}
-            multiline={true}
-            textStyle={{ minHeight: 64 }}
-            placeholder="Instructions"
-            {...multilineInputState}
-          />
-
-          {/* </React.Fragment> */}
-        </View>
-      </Layout>
+              <Input
+                label="Fill in the Recipe Instructions"
+                labelStyle={{ color: "#6b617a" }}
+                multiline={true}
+                textStyle={{ minHeight: 64 }}
+                placeholder="Instructions"
+                {...multilineInputState}
+              />
+            </View>
+          </Layout>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -138,10 +149,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6b617a",
+    backgroundColor: "#fff",
   },
   button: {
     margin: 2,
+  },
+  post: {
+    width: Dimensions.get("window").width - 30,
+    height: Dimensions.get("window").width - 30,
   },
   textInput: {
     height: 40,
