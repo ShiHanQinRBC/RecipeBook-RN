@@ -12,12 +12,14 @@ import {
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { default as theme } from "./theme.json";
 import { AppNavigator } from "./screens/Navigation";
+import { DashboardScreen } from "./screens/Dashboard";
+import { Card } from "./screens/Card";
 
 export default () => (
   <>
     <IconRegistry icons={EvaIconsPack} />
     <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-      {/* <HomeScreen /> */}
+      {/* <DashboardScreen /> */}
       <AppNavigator />
     </ApplicationProvider>
   </>

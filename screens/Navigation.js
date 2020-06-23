@@ -13,7 +13,7 @@ const { Navigator, Screen } = createStackNavigator();
 const HomeNavigator = () => (
   <Navigator headerMode="none">
     <Screen name="InstaLogin" component={InstaLogin} />
-    <Screen name="Login" component={LoginScreen} />
+    {/* <Screen name="Login" component={LoginScreen} /> */}
     <Screen name="Dashboard" component={DashboardScreen} />
     <Screen name="Card" component={Card} />
     <Screen name="EditForm" component={EditForm} />

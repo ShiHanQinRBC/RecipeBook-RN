@@ -1,7 +1,13 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import {
+  Button,
+  Image,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import InstagramLogin from "react-native-instagram-login";
-import { Button, Divider, Layout, Text } from "@ui-kitten/components";
+import { /*Button,*/ Divider, Layout, Text } from "@ui-kitten/components";
 import api from "../api";
 // import CookieManager from "@react-native-community/cookies";
 
@@ -49,13 +55,24 @@ export default class InstaLogin extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 40, color: "black" }}>Recipe Book</Text>
-        <Button style={styles.btn} onPress={() => this.instagramLogin.show()}>
-          <Text style={{ color: "white", textAlign: "center" }}>
-            Login with Instagram!
-          </Text>
-        </Button>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#40314f",
+        }}
+      >
+        <Image
+          style={{ height: 216, width: 376 }}
+          source={require("./Logo.png")}
+        />
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => this.instagramLogin.show()}
+        >
+          <Text style={styles.btnText}>Log In With Instagram!</Text>
+        </TouchableOpacity>
         {/* <TouchableOpacity
           style={[styles.btn, { marginTop: 10, backgroundColor: "green" }]}
           onPress={() => this.onClear()}
@@ -74,7 +91,7 @@ export default class InstaLogin extends Component {
           ref={(ref) => (this.instagramLogin = ref)}
           appId="857366711422868"
           appSecret="a69514fe451d7acec9cd710fa9d102a3"
-          redirectUrl="https://fbda029630f3.ngrok.io/"
+          redirectUrl="https://8f9291cee526.ngrok.io/"
           scopes={["user_profile", "user_media"]}
           onLoginSuccess={this.successHandler}
           onLoginFailure={(data) => console.log(data)}
@@ -86,6 +103,18 @@ export default class InstaLogin extends Component {
 
 const styles = StyleSheet.create({
   btn: {
-    margin: 2,
+    backgroundColor: "#c1bdc9",
+    margin: 50,
+    height: 40,
+    width: 250,
+    borderRadius: 8,
+    borderColor: "white",
+    borderWidth: 3,
+  },
+  btnText: {
+    textAlign: "center",
+    color: "#40314f",
+    paddingTop: 9,
+    fontFamily: "Futura-Medium",
   },
 });

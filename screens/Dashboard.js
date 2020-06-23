@@ -39,33 +39,26 @@ export const DashboardScreen = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#40314f" }}>
       <ScrollView style={styles.scontainer}>
         <TopNavigation
           title="Dashboard"
           alignment="center"
           accessoryLeft={BackAction}
+          backgroundColor="#40314f"
         />
-        <Divider />
         <Layout
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
           {/* {console.log(route.params.username)} */}
-          {console.log(route.params.mediaIds)}
+          {/* {console.log(route.params.mediaIds)} */}
           {/* {console.log(route.params.token)} */}
-          {/* <Card navigation={navigation} />
+
+          {/* {displayCards(route.params.mediaIds, route.params.token)} */}
+
           <Card navigation={navigation} />
           <Card navigation={navigation} />
           <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} /> */}
-          {displayCards(route.params.mediaIds, route.params.token)}
         </Layout>
       </ScrollView>
     </SafeAreaView>
@@ -79,6 +72,7 @@ const styles = StyleSheet.create({
   },
   scontainer: {
     flex: 1,
+    backgroundColor: "#40314f",
   },
   button: {
     margin: 2,

@@ -23,16 +23,22 @@ export const ViewPost = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#40314f" }}>
       <ScrollView>
         <TopNavigation
           title="View Recipe"
           alignment="center"
           accessoryLeft={BackAction}
+          style={{ backgroundColor: "#40314f" }}
         />
         <Divider />
         <Layout
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#40314f",
+          }}
         >
           <Image
             style={styles.post}
@@ -42,10 +48,31 @@ export const ViewPost = ({ navigation }) => {
             }}
           />
         </Layout>
-        <Layout style={{ alignItems: "left" }}>
-          <Text style={styles.section}> Ingredients</Text>
+        <Layout style={{ alignItems: "left", backgroundColor: "#40314f" }}>
+          <Text style={styles.section}>Ingredients</Text>
+          <Text style={styles.text}>
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          </Text>
           <Text style={styles.section}>Equipment</Text>
+          <Text style={styles.text}>
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+          </Text>
           <Text style={styles.section}>Instructions</Text>
+          <Text style={styles.text}>
+            {" "}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </Text>
         </Layout>
       </ScrollView>
     </SafeAreaView>
@@ -58,14 +85,21 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   post: {
-    width: Dimensions.get("window").width - 30,
-    height: Dimensions.get("window").width - 30,
-  },
-  button: {
-    margin: 2,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").width,
   },
   section: {
     fontSize: 20,
-    marginLeft: 15,
+    marginLeft: 26,
+    paddingTop: 15,
+    fontFamily: "Futura-Medium",
+  },
+  text: {
+    fontSize: 16,
+    marginLeft: 26,
+    marginRight: 26,
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontFamily: "Futura-Medium",
   },
 });
