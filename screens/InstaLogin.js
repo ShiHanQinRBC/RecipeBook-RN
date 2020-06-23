@@ -64,7 +64,7 @@ export default class InstaLogin extends Component {
         }}
       >
         <Image
-          style={{ height: 216, width: 376 }}
+          style={{ height: 216, width: 375 }}
           source={require("./Logo.png")}
         />
         <TouchableOpacity
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: "center",
     color: "#40314f",
-    paddingTop: 9,
+    paddingTop: 8,
     fontFamily: "Futura-Medium",
   },
 });

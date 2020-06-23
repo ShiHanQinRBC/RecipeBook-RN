@@ -54,11 +54,11 @@ export const DashboardScreen = ({ route, navigation }) => {
           {/* {console.log(route.params.mediaIds)} */}
           {/* {console.log(route.params.token)} */}
 
-          {/* {displayCards(route.params.mediaIds, route.params.token)} */}
+          {displayCards(route.params.mediaIds, route.params.token)}
 
+          {/* <Card navigation={navigation} />
           <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} />
+          <Card navigation={navigation} /> */}
         </Layout>
       </ScrollView>
     </SafeAreaView>

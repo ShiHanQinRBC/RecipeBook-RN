@@ -29,9 +29,9 @@ export const Card = (props) => {
     // return url;
   };
 
-  // useEffect(() => {
-  //   getPic();
-  // });
+  useEffect(() => {
+    getPic();
+  });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -42,8 +42,8 @@ export const Card = (props) => {
           style={styles.post}
           source={{
             //url,
-            uri:
-              "https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
+            uri: url,
+            //"https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
           }}
         />
 
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   post: {
-    width: Dimensions.get("window").width - 30,
-    height: Dimensions.get("window").width - 30,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").width,
   },
   btn: {
     margin: 8,
