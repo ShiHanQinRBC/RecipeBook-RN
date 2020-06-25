@@ -24,7 +24,7 @@ import { ScrollView } from "react-native-gesture-handler";
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 // const maiColor = "#3ca897";
 
-export const EditForm = ({ navigation }) => {
+export const EditForm = ({ route, navigation }) => {
   const [ingredients, setIngredients] = useState({
     tags: "",
     tagsArray: [],
@@ -80,8 +80,9 @@ export const EditForm = ({ navigation }) => {
           <Image
             style={styles.post}
             source={{
-              uri:
-                "https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
+              //route.params.picUrl
+              uri: route.params.picUrl,
+              //"https://scontent.cdninstagram.com/v/t51.2885-15/100955186_158607965797189_6778942453506911128_n.jpg?_nc_cat=111&_nc_sid=8ae9d6&_nc_ohc=oeU5qpvSks4AX8bLl_K&_nc_ht=scontent.cdninstagram.com&oh=760e78c980560ccd170a2a23c7f474f9&oe=5F0700E9",
             }}
           />
           <View style={styles.tagContainer}>

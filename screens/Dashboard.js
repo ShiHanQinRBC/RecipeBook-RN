@@ -30,6 +30,7 @@ export const DashboardScreen = ({ route, navigation }) => {
       cards.push(
         <Card
           //key={route.params.mediaIds[i].id}
+          navigation={navigation}
           mediaId={ids[i].id}
           token={token}
         />

@@ -13,11 +13,11 @@ export const Card = (props) => {
   const [url, setUrl] = useState("");
 
   const navigateEdit = () => {
-    props.navigation.navigate("EditForm");
+    props.navigation.navigate("EditForm", { picUrl: url });
   };
 
   const navigateView = () => {
-    props.navigation.navigate("ViewPost");
+    props.navigation.navigate("ViewPost", { picUrl: url });
   };
 
   const getPic = async () => {

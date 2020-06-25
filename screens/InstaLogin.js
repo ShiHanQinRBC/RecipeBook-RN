@@ -9,6 +9,7 @@ import {
 import InstagramLogin from "react-native-instagram-login";
 import { /*Button,*/ Divider, Layout, Text } from "@ui-kitten/components";
 import api from "../api";
+import { db } from "../services/Firebase";
 // import CookieManager from "@react-native-community/cookies";
 
 export default class InstaLogin extends Component {
@@ -34,6 +35,21 @@ export default class InstaLogin extends Component {
     this.setState({ token: token });
   };
 
+  addUser = (username) => {
+    const userRef = db.collection("users").doc(username);
+    userRef
+      .get()
+      .then((snapshot) => {
+        if (!snapshot.exists) {
+          //Only add user if they don't already exist
+          userRef.set({
+            username: username,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   successHandler = async (data) => {
     //this.setToken(data.access_token);
     const usernameRes = await api.getUsername(data.access_token);
@@ -44,6 +60,7 @@ export default class InstaLogin extends Component {
       username: usernameRes,
       mediaIds: mediaIdsRes,
     });
+    this.addUser(usernameRes);
     this.navigateDashboard();
   };
 
@@ -73,12 +90,6 @@ export default class InstaLogin extends Component {
         >
           <Text style={styles.btnText}>Log In With Instagram!</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={[styles.btn, { marginTop: 10, backgroundColor: "green" }]}
-          onPress={() => this.onClear()}
-        >
-          <Text style={{ color: "white", textAlign: "center" }}>Logout</Text>
-        </TouchableOpacity> */}
 
         {this.state.failure && (
           <View>
@@ -91,7 +102,7 @@ export default class InstaLogin extends Component {
           ref={(ref) => (this.instagramLogin = ref)}
           appId="857366711422868"
           appSecret="a69514fe451d7acec9cd710fa9d102a3"
-          redirectUrl="https://8f9291cee526.ngrok.io/"
+          redirectUrl="https://6f96116e97a1.ngrok.io/"
           scopes={["user_profile", "user_media"]}
           onLoginSuccess={this.successHandler}
           onLoginFailure={(data) => console.log(data)}
