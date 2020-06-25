@@ -13,20 +13,27 @@ export const Card = (props) => {
   const [url, setUrl] = useState("");
 
   const navigateEdit = () => {
-    props.navigation.navigate("EditForm", { picUrl: url });
+    props.navigation.navigate("EditForm", {
+      picUrl: url,
+      username: props.username,
+      mediaId: props.mediaId,
+    });
   };
 
   const navigateView = () => {
-    props.navigation.navigate("ViewPost", { picUrl: url });
+    props.navigation.navigate("ViewPost", {
+      picUrl: url,
+      username: props.username,
+      mediaId: props.mediaId,
+    });
   };
 
   const getPic = async () => {
-    console.log("get pic " + props.mediaId);
+    //console.log("get pic " + props.mediaId);
 
     const url = await api.getPictureURL(props.mediaId, props.token);
-    console.log(url);
+    //console.log(url);
     setUrl(url);
-    // return url;
   };
 
   useEffect(() => {
@@ -37,7 +44,7 @@ export const Card = (props) => {
     <SafeAreaView style={{ flex: 1 }}>
       {/* <Divider style={{ color: "#c1bdc9", marginTop: 0 }} /> */}
       <Layout style={styles.container}>
-        <Text style={styles.date}>05/22/2020</Text>
+        <Text style={styles.date}>05/20/2020</Text>
         <Image
           style={styles.post}
           source={{

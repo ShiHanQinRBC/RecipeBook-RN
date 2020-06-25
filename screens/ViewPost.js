@@ -10,6 +10,7 @@ import {
   TopNavigationAction,
 } from "@ui-kitten/components";
 import { ScrollView } from "react-native-gesture-handler";
+import { db } from "../services/Firebase";
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 
@@ -21,6 +22,17 @@ export const ViewPost = ({ route, navigation }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
+
+  const getInfo = () => {
+    const info = db
+      .collection("recipes")
+      .get()
+      .then((snapshot) => {
+        console.log(snapshot.docs);
+        //return snapshot.docs;
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#40314f" }}>
@@ -49,6 +61,7 @@ export const ViewPost = ({ route, navigation }) => {
           />
         </Layout>
         <Layout style={{ alignItems: "left", backgroundColor: "#40314f" }}>
+          {getInfo()}
           <Text style={styles.section}>Ingredients</Text>
           <Text style={styles.text}>
             {" "}

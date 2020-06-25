@@ -23,14 +23,15 @@ export const DashboardScreen = ({ route, navigation }) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
 
-  const displayCards = (ids, token) => {
-    console.log(ids);
+  const displayCards = (username, ids, token) => {
+    //console.log(ids);
     const cards = [];
     for (let i = 0; i < ids.length; i++) {
       cards.push(
         <Card
           //key={route.params.mediaIds[i].id}
           navigation={navigation}
+          username={username}
           mediaId={ids[i].id}
           token={token}
         />
@@ -55,7 +56,11 @@ export const DashboardScreen = ({ route, navigation }) => {
           {/* {console.log(route.params.mediaIds)} */}
           {/* {console.log(route.params.token)} */}
 
-          {displayCards(route.params.mediaIds, route.params.token)}
+          {displayCards(
+            route.params.username,
+            route.params.mediaIds,
+            route.params.token
+          )}
 
           {/* <Card navigation={navigation} />
           <Card navigation={navigation} />

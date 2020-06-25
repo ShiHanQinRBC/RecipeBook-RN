@@ -4,6 +4,7 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
+  TouchableOpacity,
   View,
   KeyboardAvoidingView,
 } from "react-native";
@@ -20,6 +21,7 @@ import {
 } from "@ui-kitten/components";
 import TagInput from "react-native-tags-input";
 import { ScrollView } from "react-native-gesture-handler";
+import { db } from "../services/Firebase";
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 // const maiColor = "#3ca897";
@@ -58,6 +60,20 @@ export const EditForm = ({ route, navigation }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
+
+  const addRecipe = () => {
+    const recipeRef = db.collection("recipes").doc(route.params.mediaId);
+    recipeRef
+      .get()
+      .then((snapshot) => {
+        recipeRef.set({
+          uid: route.params.username,
+          ingredients: ingredients.tagsArray,
+          equipment: equipment.tagsArray,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#40314f" }}>
@@ -138,6 +154,9 @@ export const EditForm = ({ route, navigation }) => {
                 // borderColor: "#fff",
               }}
             />
+            <TouchableOpacity style={styles.btn} onPress={addRecipe}>
+              <Text style={styles.btnText}>Submit</Text>
+            </TouchableOpacity>
           </View>
         </Layout>
       </ScrollView>
@@ -181,5 +200,20 @@ const styles = StyleSheet.create({
   },
   tagText: {
     color: "#6b617a",
+  },
+  btn: {
+    backgroundColor: "#c1bdc9",
+    margin: 50,
+    height: 40,
+    width: 250,
+    borderRadius: 8,
+    borderColor: "white",
+    borderWidth: 3,
+  },
+  btnText: {
+    textAlign: "center",
+    color: "#40314f",
+    paddingTop: 8,
+    fontFamily: "Futura-Medium",
   },
 });
