@@ -102,7 +102,7 @@ export default class InstaLogin extends Component {
           ref={(ref) => (this.instagramLogin = ref)}
           appId="857366711422868"
           appSecret="a69514fe451d7acec9cd710fa9d102a3"
-          redirectUrl="https://6f96116e97a1.ngrok.io/"
+          redirectUrl="https://1b429339b8f2.ngrok.io/"
           scopes={["user_profile", "user_media"]}
           onLoginSuccess={this.successHandler}
           onLoginFailure={(data) => console.log(data)}

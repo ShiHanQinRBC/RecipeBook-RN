@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Dimensions, Image, SafeAreaView, StyleSheet } from "react-native";
 import {
   Button,
@@ -23,16 +23,31 @@ export const ViewPost = ({ route, navigation }) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
 
-  const getInfo = () => {
-    const info = db
-      .collection("recipes")
+  const [ingredients, setIngredients] = useState("no ingredients yet");
+  const [equipment, setEquipment] = useState("no equipment yet");
+  const [instructions, setInstructions] = useState("no instructions yet");
+
+  const getInfo = (info) => {
+    db.collection("recipes")
       .get()
       .then((snapshot) => {
-        console.log(snapshot.docs);
-        //return snapshot.docs;
+        snapshot.forEach((doc) => {
+          if (doc.data()["id"] === route.params.id) {
+            //console.log("hi" + doc.data()[info]);
+            if (info === "ingredients") {
+              setIngredients(doc.data()[info]);
+            } else {
+              setEquipment(doc.data()[info]);
+            }
+          }
+        });
       })
       .catch((err) => console.log(err));
   };
+  useEffect(() => {
+    getInfo("ingredients");
+    getInfo("equipment");
+  });
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#40314f" }}>
@@ -61,30 +76,33 @@ export const ViewPost = ({ route, navigation }) => {
           />
         </Layout>
         <Layout style={{ alignItems: "left", backgroundColor: "#40314f" }}>
-          {getInfo()}
+          {/* {getInfo("equipment")} */}
           <Text style={styles.section}>Ingredients</Text>
           <Text style={styles.text}>
-            {" "}
+            {/* {" "}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut */}
+            {ingredients[0]}
           </Text>
           <Text style={styles.section}>Equipment</Text>
           <Text style={styles.text}>
-            {" "}
+            {/* {" "}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim */}
+            {equipment[0]}
           </Text>
           <Text style={styles.section}>Instructions</Text>
           <Text style={styles.text}>
-            {" "}
+            {/* {" "}
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat. Duis aute irure dolor in
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
+            culpa qui officia deserunt mollit anim id est laborum */}
+            {instructions}
           </Text>
         </Layout>
       </ScrollView>

@@ -68,6 +68,7 @@ export const EditForm = ({ route, navigation }) => {
       .then((snapshot) => {
         recipeRef.set({
           uid: route.params.username,
+          id: route.params.mediaId,
           ingredients: ingredients.tagsArray,
           equipment: equipment.tagsArray,
         });
