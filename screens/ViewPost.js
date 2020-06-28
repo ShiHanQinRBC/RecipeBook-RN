@@ -33,7 +33,6 @@ export const ViewPost = ({ route, navigation }) => {
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           if (doc.data()["id"] === route.params.id) {
-            //console.log("hi" + doc.data()[info]);
             if (info === "ingredients") {
               setIngredients(doc.data()[info]);
             } else {
