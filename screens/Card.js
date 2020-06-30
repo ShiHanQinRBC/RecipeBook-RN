@@ -11,6 +11,7 @@ import api from "../api";
 
 export const Card = (props) => {
   const [url, setUrl] = useState("");
+  const [date, setDate] = useState("");
 
   const navigateEdit = () => {
     props.navigation.navigate("EditForm", {
@@ -29,22 +30,24 @@ export const Card = (props) => {
   };
 
   const getPic = async () => {
-    //console.log("get pic " + props.mediaId);
-
     const url = await api.getPictureURL(props.mediaId, props.token);
-    //console.log(url);
     setUrl(url);
+  };
+
+  const getDate = async () => {
+    const date = await api.getDate(props.mediaId, props.token);
+    setDate(date.substring(0, 10));
   };
 
   useEffect(() => {
     getPic();
+    getDate();
   });
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <Divider style={{ color: "#c1bdc9", marginTop: 0 }} /> */}
       <Layout style={styles.container}>
-        <Text style={styles.date}>05/20/2020</Text>
+        <Text style={styles.date}>{date}</Text>
         <Image
           style={styles.post}
           source={{

@@ -29,7 +29,7 @@ export const DashboardScreen = ({ route, navigation }) => {
     for (let i = 0; i < ids.length; i++) {
       cards.push(
         <Card
-          //key={route.params.mediaIds[i].id}
+          key={ids[i].id}
           navigation={navigation}
           username={username}
           mediaId={ids[i].id}
@@ -52,19 +52,11 @@ export const DashboardScreen = ({ route, navigation }) => {
         <Layout
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          {/* {console.log(route.params.username)} */}
-          {/* {console.log(route.params.mediaIds)} */}
-          {/* {console.log(route.params.token)} */}
-
           {displayCards(
             route.params.username,
             route.params.mediaIds,
             route.params.token
           )}
-
-          {/* <Card navigation={navigation} />
-          <Card navigation={navigation} />
-          <Card navigation={navigation} /> */}
         </Layout>
       </ScrollView>
     </SafeAreaView>

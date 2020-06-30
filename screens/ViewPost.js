@@ -32,11 +32,11 @@ export const ViewPost = ({ route, navigation }) => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
-          if (doc.data()["id"] === route.params.id) {
+          if (doc.data()["id"] === route.params.mediaId) {
             if (info === "ingredients") {
-              setIngredients(doc.data()[info]);
+              setIngredients(doc.data()[info].toString());
             } else if (info === "equipment") {
-              setEquipment(doc.data()[info]);
+              setEquipment(doc.data()[info].toString());
             } else {
               setInstructions(doc.data()[info]);
             }
@@ -45,6 +45,7 @@ export const ViewPost = ({ route, navigation }) => {
       })
       .catch((err) => console.log(err));
   };
+
   useEffect(() => {
     getInfo("ingredients");
     getInfo("equipment");
@@ -80,32 +81,11 @@ export const ViewPost = ({ route, navigation }) => {
         <Layout style={{ alignItems: "left", backgroundColor: "#40314f" }}>
           {/* {getInfo("equipment")} */}
           <Text style={styles.section}>Ingredients</Text>
-          <Text style={styles.text}>
-            {/* {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut */}
-            {ingredients[0]}
-          </Text>
+          <Text style={styles.text}>{ingredients}</Text>
           <Text style={styles.section}>Equipment</Text>
-          <Text style={styles.text}>
-            {/* {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim */}
-            {equipment[0]}
-          </Text>
+          <Text style={styles.text}>{equipment}</Text>
           <Text style={styles.section}>Instructions</Text>
-          <Text style={styles.text}>
-            {/* {" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum */}
-            {instructions}
-          </Text>
+          <Text style={styles.text}>{instructions}</Text>
         </Layout>
       </ScrollView>
     </SafeAreaView>
