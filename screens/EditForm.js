@@ -4,18 +4,15 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
+  TextInput,
+  Text,
   TouchableOpacity,
   View,
-  KeyboardAvoidingView,
 } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
-  Button,
   Divider,
   Icon,
-  Input,
   Layout,
-  Text,
   TopNavigation,
   TopNavigationAction,
 } from "@ui-kitten/components";
@@ -35,6 +32,7 @@ export const EditForm = ({ route, navigation }) => {
     tags: "",
     tagsArray: [],
   });
+  const [instructions, setInstructions] = useState("");
 
   const [tagsColor, setTagsColor] = useState("#ada5b8");
   const [tagsText, setTagsText] = useState("#fff");
@@ -50,8 +48,6 @@ export const EditForm = ({ route, navigation }) => {
     const [value, setValue] = React.useState(initialValue);
     return { value, onChangeText: setValue };
   };
-
-  const multilineInputState = useInputState();
 
   const navigateBack = () => {
     navigation.goBack();
@@ -71,6 +67,7 @@ export const EditForm = ({ route, navigation }) => {
           id: route.params.mediaId,
           ingredients: ingredients.tagsArray,
           equipment: equipment.tagsArray,
+          instructions: instructions,
         });
       })
       .catch((err) => console.log(err));
@@ -115,7 +112,7 @@ export const EditForm = ({ route, navigation }) => {
                 styles.textInput,
                 { backgroundColor: tagsColor },
               ]}
-              inputStyle={{ color: tagsText }}
+              inputStyle={{ color: tagsText, fontSize: 14 }}
               autoCorrect={false}
               tagStyle={styles.tag}
               tagTextStyle={styles.tagText}
@@ -133,27 +130,20 @@ export const EditForm = ({ route, navigation }) => {
                 styles.textInput,
                 { backgroundColor: tagsColor },
               ]}
-              inputStyle={{ color: tagsText }}
+              inputStyle={{ color: tagsText, fontSize: 14 }}
               autoCorrect={false}
               tagStyle={styles.tag}
               tagTextStyle={styles.tagText}
               keysForTag={", "}
             />
 
-            <Input
-              label="Fill in the Recipe Instructions"
-              labelStyle={styles.label}
+            <Text style={styles.instructionsLabel}>
+              Fill in the recipe instructions!
+            </Text>
+            <TextInput
               multiline={true}
-              textStyle={{ minHeight: 64 }}
-              {...multilineInputState}
-              style={{
-                paddingLeft: 26,
-                paddingRight: 26,
-                paddingTop: 10,
-                backgroundColor: "#c1bdc9",
-                // borderWidth: 3,
-                // borderColor: "#fff",
-              }}
+              style={styles.instructions}
+              onChangeText={(text) => setInstructions(text)}
             />
             <TouchableOpacity style={styles.btn} onPress={addRecipe}>
               <Text style={styles.btnText}>Submit</Text>
@@ -182,7 +172,16 @@ const styles = StyleSheet.create({
   label: {
     color: "#fff",
     fontFamily: "Futura-Medium",
-    fontSize: 14,
+    fontSize: 16,
+  },
+  instructionsLabel: {
+    color: "#fff",
+    fontFamily: "Futura-Medium",
+    fontSize: 16,
+    alignSelf: "flex-start",
+    paddingLeft: 12,
+    paddingTop: 10,
+    paddingBottom: 4,
   },
   post: {
     width: Dimensions.get("window").width,
@@ -201,10 +200,11 @@ const styles = StyleSheet.create({
   },
   tagText: {
     color: "#6b617a",
+    fontSize: 14,
   },
   btn: {
     backgroundColor: "#c1bdc9",
-    margin: 50,
+    margin: 20,
     height: 40,
     width: 250,
     borderRadius: 8,
@@ -214,7 +214,20 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: "center",
     color: "#40314f",
-    paddingTop: 8,
+    paddingTop: 6,
     fontFamily: "Futura-Medium",
+  },
+  instructions: {
+    width: Dimensions.get("window").width - 60,
+    height: 60,
+    paddingLeft: 8,
+    paddingRight: 26,
+    paddingTop: 10,
+    backgroundColor: "#ada5b8",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#fff",
+    color: "#fff",
+    fontSize: 14,
   },
 });

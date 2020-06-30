@@ -35,8 +35,10 @@ export const ViewPost = ({ route, navigation }) => {
           if (doc.data()["id"] === route.params.id) {
             if (info === "ingredients") {
               setIngredients(doc.data()[info]);
-            } else {
+            } else if (info === "equipment") {
               setEquipment(doc.data()[info]);
+            } else {
+              setInstructions(doc.data()[info]);
             }
           }
         });
@@ -46,6 +48,7 @@ export const ViewPost = ({ route, navigation }) => {
   useEffect(() => {
     getInfo("ingredients");
     getInfo("equipment");
+    getInfo("instructions");
   });
 
   return (
