@@ -33,9 +33,9 @@ export const EditForm = ({ route, navigation }) => {
     tagsArray: [],
   });
   const [instructions, setInstructions] = useState("");
-
   const [tagsColor, setTagsColor] = useState("#ada5b8");
   const [tagsText, setTagsText] = useState("#fff");
+  const [buttonText, setButtonText] = useState("Submit");
 
   const updateIngredientsState = (state) => {
     setIngredients(state);
@@ -71,6 +71,7 @@ export const EditForm = ({ route, navigation }) => {
         });
       })
       .catch((err) => console.log(err));
+    setButtonText("Submitted!");
   };
 
   return (
@@ -145,7 +146,7 @@ export const EditForm = ({ route, navigation }) => {
               onChangeText={(text) => setInstructions(text)}
             />
             <TouchableOpacity style={styles.btn} onPress={addRecipe}>
-              <Text style={styles.btnText}>Submit</Text>
+              <Text style={styles.btnText}>{buttonText}</Text>
             </TouchableOpacity>
           </View>
         </Layout>
